@@ -1,0 +1,34 @@
+{
+  "pages":[
+    "pages/index/index",
+    "pages/logs/logs",
+    "pages/mine/mine"
+  ],
+  "window":{
+    "backgroundTextStyle":"light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "WeChat",
+    "navigationBarTextStyle":"black"
+  },
+  "tabBar": {
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "附近门店",
+        "color": "#000"
+      },
+      {
+        "pagePath": "pages/logs/logs",
+        "text": "本地头条"
+      },
+      {
+        "pagePath": "pages/index/index",
+        "text": "生活圈"
+      },
+      {
+        "pagePath": "pages/mine/mine",
+        "text": "个人中心"
+      }
+    ]
+  }
+}

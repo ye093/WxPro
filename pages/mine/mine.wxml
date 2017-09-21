@@ -1,0 +1,5 @@
+<view class="container">
+  <view id='outer' bindtap='outerClick'>
+  <image style="width: 200px; height: 200px; background-color: #eeeeee;" mode="scaleToFill" src='{{mySrc}}'></image>
+  </view>
+</view>
