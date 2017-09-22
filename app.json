@@ -15,19 +15,27 @@
       {
         "pagePath": "pages/index/index",
         "text": "附近门店",
-        "color": "#000"
+        "color": "#000",
+        "iconPath": "drawable/shops.png",
+        "selectedIconPath": "drawable/shops_sel.png"
       },
       {
         "pagePath": "pages/logs/logs",
-        "text": "本地头条"
+        "text": "本地头条",
+        "iconPath": "drawable/topline.png",
+        "selectedIconPath": "drawable/topline_sel.png"
       },
       {
         "pagePath": "pages/index/index",
-        "text": "生活圈"
+        "text": "生活圈",
+        "iconPath": "drawable/life.png",
+        "selectedIconPath": "drawable/life_sel.png"
       },
       {
         "pagePath": "pages/mine/mine",
-        "text": "个人中心"
+        "text": "个人中心",
+        "iconPath": "drawable/personal.png",
+        "selectedIconPath": "drawable/personal_sel.png"
       }
     ]
   }

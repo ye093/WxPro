@@ -1,5 +1,6 @@
 //logs.js
 const qiniuUploader = require('../../utils/qiniuUploader.js')
+const ye = require('../../utils/ye.js')
 
 Page({
 
@@ -47,6 +48,16 @@ outerClick: function(e) {
         });
     }
   })
+},
+
+testFunc: function(e) {
+  console.log("testFunc !!!");
+  ye.request({
+    url: 'https://www.yefamily.cn/wxlogin',
+    success: function(res) {
+      console.log(res.data);
+    }
+  });
 },
 
 
