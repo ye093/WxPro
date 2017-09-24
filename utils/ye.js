@@ -1,4 +1,8 @@
 function request(obj) {
+  if (obj['url'].indexOf('http') == -1 || 
+    obj['url'].indexOf('http') > 0) {
+    obj['url'] = 'https://www.yefamily.cn/' + obj['url']
+  }
   try {
     var sessionId = wx.getStorageSync('3rd_session')
     if (sessionId) {

@@ -1,5 +1,3 @@
-<view class="container">
-  <view id='outer' bindtap='testFunc'>
-  <image style="width: 200px; height: 200px; background-color: #eeeeee;" mode="scaleToFill" src='{{mySrc}}'></image>
-  </view>
+<view class="container" bindtap="testFunc">
+  4444
 </view>
