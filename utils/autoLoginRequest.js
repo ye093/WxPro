@@ -12,6 +12,7 @@ function call(obj, reloadCallback) {
         });
         console.log("auto loading.....")
         login(obj, reloadCallback);
+        return;
       }
     }
     if (successCallBack) {

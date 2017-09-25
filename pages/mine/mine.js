@@ -2,12 +2,16 @@ const autoLoginRequest = require('../../utils/autoLoginRequest.js');
 const ye = require('../../utils/ye.js');
 const fileDownloader = require('../../utils/fileDownloader.js');
 
+//获取应用实例
+var app = getApp();
+
 Page({
   /**
    * 页面的初始数据
    */
   data: {
-    icons: {}
+    icons: {},
+    userInfo: {}
   },
 
   testFunc: function(e) {
@@ -16,8 +20,14 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log("mine onLoad")
+    console.log("mine onLoad");
     var that = this;
+    app.getUserInfo(function(userInfo) {
+      console.log("mine userInfo: " + userInfo);
+      that.setData({
+        userInfo: userInfo
+      });
+    });
     var param = {
       url: 'pageconfig',
       method: 'GET',
@@ -32,14 +42,15 @@ Page({
         var fileSet = {};
         var iconsArray = res.data.data;
         if (iconsArray && iconsArray.length > 0) {
-          for (var i = 0, len = iconsArray.length; i < len; i++) {
-            var iconObj = iconsArray[i];
-            fileDownloader.fileLoader(iconObj, function(iconPath) {
-              var key = iconObj['fileName'];
+          for (let i = 0, len = iconsArray.length; i < len; i++) {
+            let iconObj = iconsArray[i];
+            fileDownloader.fileLoader(iconObj, function (iconPath) {
+              let key = iconObj['fileName'];
               key = key.slice(0, key.indexOf('.'));
               fileSet[key] = iconPath;
             });
           }
+          console.log(fileSet);
           that.setData({
             icons: fileSet
           });
@@ -55,7 +66,6 @@ Page({
         ye.request(param);
       }
     );
-
   },
 
   /**
@@ -94,7 +104,8 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-
+    console.log("onPullDownRefresh");
+    wx.stopPullDownRefresh();
   },
 
   /**
