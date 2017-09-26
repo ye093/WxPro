@@ -14,7 +14,11 @@ Page({
     userInfo: {}
   },
 
-  testFunc: function(e) {
+   userInfoDetail: function(e) {
+    //用户信息修改页面
+    wx.navigateTo({
+      url: "/pages/userinfo/userinfo"
+    });
   },
   /**
    * 生命周期函数--监听页面加载
@@ -38,23 +42,10 @@ Page({
         'content-type': 'application/json'
       },
       success: function (res) {
-        console.log("pageConfig: " + JSON.stringify(res.data));
-        var fileSet = {};
-        var iconsArray = res.data.data;
-        if (iconsArray && iconsArray.length > 0) {
-          for (let i = 0, len = iconsArray.length; i < len; i++) {
-            let iconObj = iconsArray[i];
-            fileDownloader.fileLoader(iconObj, function (iconPath) {
-              let key = iconObj['fileName'];
-              key = key.slice(0, key.indexOf('.'));
-              fileSet[key] = iconPath;
-            });
-          }
-          console.log(fileSet);
-          that.setData({
-            icons: fileSet
-          });
-        }
+        console.log("pageConfig: " + JSON.stringify(res.data.data));
+        that.setData({
+          icons: res.data.data
+        });
       },
       fail: function (res) {
         console.log(res);

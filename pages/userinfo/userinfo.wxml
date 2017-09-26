@@ -1,0 +1,52 @@
+<view class="container">
+  <view class='header_container'>
+    <image class='header_icon' mode="aspectFill" src="{{userInfo.showAvatarUrl ? userInfo.showAvatarUrl : userInfo.avatarUrl}}"></image>
+    <view>{{userInfo.showName ? userInfo.showName : userInfo.nickName}}</view>
+  </view>
+
+  <form bindsubmit="fromSubmit">
+    <view class="section">
+      <view class="section_title">姓名</view>
+      <input name="showName" placeholder="请输入姓名" />
+    </view>
+
+    <view class="section">
+      <view class="section_title">性别</view>
+      <radio-group name="gender">
+        <label>
+          <radio value="1" checked="{{userInfo.gender == 1}}"/>男</label>
+        <label>
+          <radio value="0" checked="{{userInfo.gender != 1}}"/>女</label>
+      </radio-group>
+    </view>
+
+    <view class="section">
+      <view class="section_title">手机号码</view>
+      <input name="showPhone" placeholder="请输入11位数字的手机号码" />
+    </view>
+
+    <view class="section">
+      <view class="section_title">所在地区</view>
+      <picker mode="region" bindchange="bindRegionChange" value="{{region}}" custom-item="{{customItem}}">
+        <view class="picker">
+        {{region[0]}} {{region[1]}} {{region[2]}}
+        </view>
+      </picker>
+    </view>
+
+    <view class="section">
+      <view class="section_title">详细地址</view>
+      <input name="showDetail" placeholder="镇、街道、村等" />
+    </view>
+
+    <view class="section">
+      <view class="section_title">个性签名</view>
+      <textarea name="personalitySignature" placeholder="请输入小于50字的个性签名" />
+    </view>
+
+    <view class="btn-area">
+      <button formType="submit">保存提交</button>
+    </view>
+  </form>
+
+</view>

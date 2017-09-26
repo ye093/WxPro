@@ -1,7 +1,18 @@
-<view>
+<view class="container">
   <!--顶部头像栏-->
-  <view class='person_header_container'>
-    <!--头像-->
-    <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
+  <view class='person_header_container item' bindtap='userInfoDetail'>
+    <view class='user_msg_container'> 
+      <!--头像-->
+      <image class="userinfo-avatar" src="{{userInfo.user.url}}" background-size="cover"></image>
+      <!--身份信息-->
+      <view>
+        <view>{{userInfo.user.name}}</view>
+        <view>尊贵会员</view>
+     </view>
+    </view>
+    <image class='more_icon' src="{{icons.more_16}}"></image>
   </view>
+
+
+  
 </view>
