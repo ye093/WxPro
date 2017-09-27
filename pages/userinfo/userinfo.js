@@ -1,4 +1,5 @@
-
+const autoLoginRequest = require("../../utils/autoLoginRequest.js");
+const qiniuUploader = require('../../utils/qiniuUploader.js');
 //获取应用实例
 var app = getApp();
 Page({
@@ -8,13 +9,40 @@ Page({
    */
   data: {
     region: ['', '', ''],
-    userInfo: {}
+    userInfo: {},
+    headPic:''
   },
 
   fromSubmit: function (e) {
     //表单信息修改
     var value = e.detail.value;
     console.log('form发生了submit事件，携带数据为：', value);
+    autoLoginRequest.call({
+      url: "updateuserinfo",
+      method: "POST",
+      data: value,
+      success: function(res) {
+        console.log("successCallback update user info: " + res.data);
+        if (res.data.code == 1) {
+          wx.showToast({
+            title: '更新资料成功',
+            icon: 'success',
+            duration: 2000
+          });
+          app.globalData.userInfoIsChanged = true;
+        } else {
+          wx.showToast({
+            title: '更新资料失败',
+            duration: 2000
+          })
+        }
+      },
+      fail: function(e) {
+        console.log("failCallback update user info: " + e);
+      },
+      complete: function() {
+      }
+    });
     
   },
   bindRegionChange: function (e) {
@@ -24,18 +52,50 @@ Page({
     })
   },
 
+  headerIconClick: function (e) {
+    var that = this;
+    //点击选择头像
+    wx.chooseImage({
+      count:1,
+      sizeType: "compressed",
+      success: function(res) {
+        var filePath = res.tempFilePaths[0];
+        var objId = app.globalData.userInfo.objectId;
+        var headType = 100;
+        qiniuUploader.upload(filePath, (res) => {
+          console.log(res);
+          app.globalData.userInfoIsChanged = true;
+          that.setData({
+            headPic: filePath
+          });
+
+        }, (error) => {
+          console.log('error: ' + error);
+        }, {
+            region: 'SCN',
+            domain: 'https://yefamily.cn',
+            uptokenURL: 'file/uploadtoken?objectId=' + objId + '&type=' + headType,
+            shouldUseQiniuFileName: true
+          });
+      }
+    });
+  },
+
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
     console.log("userinfo page onLoad");
-    var that = this;
-    app.getUserInfo(function (userInfo) {
-      console.log("mine userInfo: " + userInfo);
-      that.setData({
-        userInfo: userInfo
-      });
+    this.setData({
+      userInfo: app.globalData.userInfo
     });
+    // var that = this;
+    // app.getUserInfo(function (userInfo) {
+    //   console.log("mine userInfo: " + userInfo);
+    //   that.setData({
+    //     userInfo: userInfo
+    //   });
+    // });
   },
 
   /**

@@ -1,4 +1,5 @@
 // created by gpake
+const ye = require("./ye.js");
 (function() {
 
 var config = {
@@ -133,7 +134,7 @@ function doUpload(filePath, success, fail, options) {
 }
 
 function getQiniuToken(callback) {
-  wx.request({
+  ye.request({
     url: config.qiniuUploadTokenURL,
     success: function (res) {
       //add by yejinyun: customeObjectId and customeType

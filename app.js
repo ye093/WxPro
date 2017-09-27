@@ -89,6 +89,23 @@ App({
   },
 
   globalData: {
-    userInfo: null
+    userInfo: null,
+    userInfoIsChanged: false //标记个人信息是否修改，头像改了也算
+  },
+  getUpdateUserInfo: function(cb) {
+    var that = this;
+    autoLoginRequest.call({
+      url: "getuserinfo",
+      method: 'POST',
+      success: function (res) {
+        console.log(res.data);
+        if (res.data.code == 1) {
+          that.globalData.userInfoIsChanged = false;
+          that.globalData.userInfo = res.data.data
+          typeof cb == "function" && cb(that.globalData.userInfo)
+        }
+      }
+    }
+    )
   }
 })

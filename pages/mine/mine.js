@@ -71,7 +71,14 @@ Page({
    */
   onShow: function () {
     console.log("mine onShow")
-
+    var that = this;
+    if (app.globalData.userInfoIsChanged) {
+      app.getUpdateUserInfo(function (userInfo) {
+        that.setData({
+          userInfo: userInfo
+        });
+      });
+    }
   },
 
   /**
