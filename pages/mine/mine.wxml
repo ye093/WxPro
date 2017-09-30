@@ -7,11 +7,14 @@
       <!--身份信息-->
       <view>
         <view>{{userInfo.user.name}}</view>
-        <view>尊贵会员</view>
+        <view wx:if="{{userInfo.identity}}">{{userInfo.identity.name}}</view>
      </view>
     </view>
     <image class='more_icon' src="{{icons.more_16}}"></image>
   </view>
+
+
+
 
 
   
