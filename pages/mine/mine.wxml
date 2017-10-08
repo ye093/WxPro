@@ -13,6 +13,14 @@
     <image class='more_icon' src="{{icons.more_16}}"></image>
   </view>
 
+  <!--管理-->
+  <view class='person_header_container item' bindtap='authCodePage'>
+    <view> 
+    管理
+    </view>
+    <image class='more_icon' src="{{icons.more_16}}"></image>
+  </view>
+
 
 
 

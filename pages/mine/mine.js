@@ -15,11 +15,43 @@ Page({
   },
 
    userInfoDetail: function(e) {
-    //用户信息修改页面
+    //跳转用户信息修改页面
     wx.navigateTo({
       url: "/pages/userinfo/userinfo"
     });
   },
+   authCodePage: function(e) {
+     //获取授权码
+     wx.showLoading({
+       title: '请稍等'
+     })
+     ye.request({
+       url:"getauthcode",
+       method: "GET",
+       success: function(res) {
+         var data = res.data;
+         if (data.code == 1) {
+           wx.showModal({
+             title: "授权码",
+             content: data.data.randomCode + '',
+             showCancel: false,
+             confirmText: "我知道了"
+           });
+         } else {
+          wx.showToast({
+            title: "error code:" + data.code
+          });
+         }
+       },
+       fail: function() {
+         
+       },
+       complete: function() {
+         wx.hideLoading();
+       }
+     });
+     
+   },
   /**
    * 生命周期函数--监听页面加载
    */

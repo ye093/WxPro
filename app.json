@@ -1,15 +1,17 @@
 {
-  "pages":[
+  "pages": [
     "pages/index/index",
     "pages/logs/logs",
     "pages/mine/mine",
-    "pages/userinfo/userinfo"
+    "pages/userinfo/userinfo",
+    "pages/carpool/carpool",
+    "pages/carpoolCreate/carpoolCreate"
   ],
-  "window":{
-    "backgroundTextStyle":"light",
+  "window": {
+    "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "WeChat",
-    "navigationBarTextStyle":"black"
+    "navigationBarTextStyle": "black"
   },
   "tabBar": {
     "list": [
@@ -21,7 +23,7 @@
         "selectedIconPath": "drawable/shops_sel.png"
       },
       {
-        "pagePath": "pages/logs/logs",
+        "pagePath": "pages/carpoolCreate/carpoolCreate",
         "text": "本地头条",
         "iconPath": "drawable/topline.png",
         "selectedIconPath": "drawable/topline_sel.png"

@@ -1,0 +1,51 @@
+<view class="container">
+  <form>
+    <text>类型：</text>
+    <radio-group bindchange='typeSelected'>
+      <label>
+        <radio value='1' checked="true" />车找人
+      </label>
+      <label>
+        <radio value='2' />人找车
+      </label>
+    </radio-group>
+
+    <picker mode='date' start='{{currentDate}}' bindchange='datePicker'>
+      <input type='text' placeholder='出发日期' disabled='true' value="{{startDate}}"></input>
+    </picker>
+
+    <picker mode='time' bindchange='timePicker'>
+      <input type='text' placeholder='出发时间' disabled='true' value="{{startTime}}"></input>
+    </picker>
+
+    <picker mode='selector' range='{{personRange}}' bindchange='numPicker'>
+      <input type='text' placeholder='乘客数量' value='{{personNum}}'></input>
+    </picker>
+
+    <picker mode='region' bindchange='startRegionPicker'>
+      <input type='text' placeholder='出发地' disabled='true' value="{{startRegion ? startRegion[2] : ''}}"></input>
+    </picker>
+    <input name="startDetail" placeholder="出发地备注描述" />
+
+    <picker mode='region' bindchange='endRegionPicker'>
+      <input type='text' placeholder='目的地' disabled='true' value="{{endRegion ? endRegion[2] : ''}}"></input>
+    </picker>
+    <input name="endDetail" placeholder="目的地备注描述" />
+    <input name="amount" placeholder="请输入价格(元)" wx:if="{{type==1}}" />
+    <input type='text' placeholder='车辆描述' wx:if="{{type==1}}"></input>
+
+    <view>
+      <input type='text' placeholder='您的姓名'></input>
+    </view>
+
+     <view>
+      <input type='text' placeholder='您的手机号码'></input>
+    </view>
+
+    <textarea maxlength='200' placeholder='备注'></textarea>
+
+    <button form-type='submit'>发布</button>
+
+
+  </form>
+</view>
